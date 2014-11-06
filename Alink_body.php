@@ -2,9 +2,9 @@
 
 class Alink {
 
-	private $attrs_ref = array( "href", "rel", "target", "class", "id", "content", "name" ); 
-	private $attrs_like = array( "data-" );
-	private $protocols = array( "https://", "http://", "ftp://" );
+	private static $attrs_ref = array( "href", "rel", "target", "class", "id", "content", "name", "itemprop" ); 
+	private static $attrs_like = array( "data-" );
+	private static $protocols = array( "https://", "http://", "ftp://" );
 	
 	/**
 	 * @param $parser Parser
@@ -30,24 +30,34 @@ class Alink {
 				}
 				
 				foreach ( self::$attrs_like as $attr_like ) {
-					if ( strpos( $arg_proc[0], $attr_like ) ) {
+					if ( strpos( $arg_proc[0], $attr_like ) == 0 ) {
 						$attrs[ trim( $arg_proc[0] ) ] = trim( $arg_proc[1] );
 					}
 				}
 			}
 		}
 		
+		// Code for dealing with internal - external
+		$external = 0;  
 		if ( isset( $attrs["href"] ) ) {
 			foreach ( self::$protocols as $protocol ) {
-				if ( strpos( $attrs["href"], $protocol ) != 0 ) {
-					
-					global $wgArticlePath;
-					$page = $attrs["href"];
-					$attrs["href"] = $wgArticlePath;
-					$attrs["href"] = str_replace( "$1", urlencode( $page ), $attrs["href"] );
+				$detect = strpos( $attrs["href"], $protocol );
+				if ( is_int( $detect ) ) {
+						$external = 1;
 				}
 			}
 		}
+
+		if ( $external == 0 ) {
+			if ( isset( $attrs["href"] ) ) {
+				global $wgArticlePath;
+				$page = $attrs["href"];
+				$attrs["href"] = $wgArticlePath;
+				$attrs["href"] = str_replace( "$1", urlencode( $page ), $attrs["href"] );
+			}
+		}
+		
+		// If no text, use href
 		
 		if ( $text == "" && isset( $attrs["href"] ) ) {
 			$text = $attrs["href"];
@@ -55,10 +65,11 @@ class Alink {
 
 		$tag = 	Html::element(
 			'a',
-				$attrs
+				$attrs,
+			$text
 		);
 		
-		return $tag;
+		return $parser->insertStripItem( $output, $parser->mStripState );
 	}
 	
 	
