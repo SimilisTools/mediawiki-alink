@@ -52,6 +52,7 @@ class Alink {
 			if ( isset( $attrs["href"] ) ) {
 				global $wgArticlePath;
 				$page = $attrs["href"];
+				$page = str_replace( " ", "_", $page );
 				$attrs["href"] = $wgArticlePath;
 				$attrs["href"] = str_replace( "$1", urlencode( $page ), $attrs["href"] );
 			}
