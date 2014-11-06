@@ -4,6 +4,7 @@ class Alink {
 
 	private $attrs_ref = array( "href", "rel", "target", "class", "id", "content", "name" ); 
 	private $attrs_like = array( "data-" );
+	private $protocols = array( "https://", "http://", "ftp://" );
 	
 	/**
 	 * @param $parser Parser
@@ -24,14 +25,22 @@ class Alink {
 				$text = trim( $arg_proc[0] );
 			} else {
 			
-				if ( in_array( trim( $arg_proc[0] ), $attrs_ref ) ) {
+				if ( in_array( trim( $arg_proc[0] ), self::$attrs_ref ) ) {
 					$attrs[ trim( $arg_proc[0] ) ] = trim( $arg_proc[1] );
 				}
 				
-				foreach ( $attrs_like as $attr_like ) {
-					if ( strpos( $$arg_proc[0], $attr_like ) ) {
+				foreach ( self::$attrs_like as $attr_like ) {
+					if ( strpos( $arg_proc[0], $attr_like ) ) {
 						$attrs[ trim( $arg_proc[0] ) ] = trim( $arg_proc[1] );
 					}
+				}
+			}
+		}
+		
+		if ( isset( $attrs["href"] ) ) {
+			foreach ( self::$protocols as $protocol ) {
+				if ( strpos( $attrs["href"], $protocol ) != 0 ) {
+					// TODO create URL
 				}
 			}
 		}
@@ -40,7 +49,12 @@ class Alink {
 			$text = $attrs["href"];
 		}
 
+		$tag = 	Html::element(
+			'a',
+				$attrs
+		);
 		
+		return $tag;
 	}
 	
 	
