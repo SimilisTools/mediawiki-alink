@@ -69,7 +69,7 @@ class Alink {
 			$text
 		);
 		
-		return $parser->insertStripItem( $output, $parser->mStripState );
+		return $parser->insertStripItem( $tag, $parser->mStripState );
 	}
 	
 	
