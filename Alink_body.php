@@ -13,7 +13,7 @@ class Alink {
 	 * @return string
 	 */
 	public static function process_alink( &$parser, $frame, $args ) {
-		
+
 		$attrs = array();
 		$text = "";
 		
@@ -40,7 +40,11 @@ class Alink {
 		if ( isset( $attrs["href"] ) ) {
 			foreach ( self::$protocols as $protocol ) {
 				if ( strpos( $attrs["href"], $protocol ) != 0 ) {
-					// TODO create URL
+					
+					global $wgArticlePath;
+					$page = $attrs["href"];
+					$attrs["href"] = $wgArticlePath;
+					$attrs["href"] = str_replace( "$1", urlencode( $page ), $attrs["href"] );
 				}
 			}
 		}
