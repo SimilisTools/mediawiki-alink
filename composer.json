@@ -6,7 +6,7 @@
 		"MediaWiki",
 		"Link"
 	],
-	"homepage": "https://www.mediawiki.org/wiki/Extension:Alink",
+	"homepage": "https://github.com/SimilisTools/mediawiki-alink",
 	"license": "GPL-3.0+",
 	"authors": [
 		{
