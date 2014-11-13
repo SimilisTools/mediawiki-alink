@@ -1,4 +1,4 @@
-mediawiki-alink
+Alink
 ===============
 
 Extension for printing customizable anchor links in MediaWiki.
@@ -9,5 +9,5 @@ Examples:
 
 if no http in href, we consider wiki pages. Link text is the parameter without any '='.
 
-{{#alink:href=Example_page|target_blank|Example page for wiki}}
+{{#alink:href=Example_page|target=_blank|Example page for wiki}}
 
