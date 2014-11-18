@@ -19,7 +19,7 @@ $GLOBALS['wgMessagesDirs']['Alink'] = __DIR__ . '/i18n';
 $GLOBALS['wgExtensionMessagesFiles']['Alink'] = __DIR__ . '/Alink.i18n.php';
 $GLOBALS['wgExtensionMessagesFiles']['AlinkMagic'] = __DIR__ . '/Alink.i18n.magic.php';
 
-$wgHooks['ParserFirstCallInit'][] = 'wfRegisterAlink';
+$GLOBALS['wgHooks']['ParserFirstCallInit'][] = 'wfRegisterAlink';
 
 
 /**
