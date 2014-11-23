@@ -5,22 +5,26 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 	die( 'This file is a MediaWiki extension, it is not a valid entry point' );
 }
 
-$GLOBALS['wgExtensionCredits']['parserhook'][] = array(
-	'path' => __FILE__,
-	'name' => 'Alink',
-	'version' => '0.1',
-	'url' => 'https://github.com/SimilisTools/mediawiki-alink',
-	'author' => array( 'Toniher' ),
-	'descriptionmsg' => 'alink-desc',
-);
+//self executing anonymous function to prevent global scope assumptions
+call_user_func( function() {
 
-$GLOBALS['wgAutoloadClasses']['Alink'] = __DIR__.'/Alink_body.php';
-$GLOBALS['wgMessagesDirs']['Alink'] = __DIR__ . '/i18n';
-$GLOBALS['wgExtensionMessagesFiles']['Alink'] = __DIR__ . '/Alink.i18n.php';
-$GLOBALS['wgExtensionMessagesFiles']['AlinkMagic'] = __DIR__ . '/Alink.i18n.magic.php';
+	$GLOBALS['wgExtensionCredits']['parserhook'][] = array(
+		'path' => __FILE__,
+		'name' => 'Alink',
+		'version' => '0.1',
+		'url' => 'https://github.com/SimilisTools/mediawiki-alink',
+		'author' => array( 'Toniher' ),
+		'descriptionmsg' => 'alink-desc',
+	);
 
-$GLOBALS['wgHooks']['ParserFirstCallInit'][] = 'wfRegisterAlink';
+	$GLOBALS['wgAutoloadClasses']['Alink'] = __DIR__.'/Alink_body.php';
+	$GLOBALS['wgMessagesDirs']['Alink'] = __DIR__ . '/i18n';
+	$GLOBALS['wgExtensionMessagesFiles']['Alink'] = __DIR__ . '/Alink.i18n.php';
+	$GLOBALS['wgExtensionMessagesFiles']['AlinkMagic'] = __DIR__ . '/Alink.i18n.magic.php';
 
+	$GLOBALS['wgHooks']['ParserFirstCallInit'][] = 'wfRegisterAlink';
+
+} );
 
 /**
  * @param $parser Parser
