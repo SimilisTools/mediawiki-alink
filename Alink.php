@@ -28,5 +28,6 @@ $GLOBALS['wgHooks']['ParserFirstCallInit'][] = 'wfRegisterAlink';
  */
 function wfRegisterAlink( $parser ) {
 	$parser->setFunctionHook( 'alink', 'Alink::process_alink', SFH_OBJECT_ARGS );
+	$parser->setFunctionHook( 'aimg', 'Alink::process_aimg', SFH_OBJECT_ARGS );
 	return true;
 }
