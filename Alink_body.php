@@ -83,6 +83,8 @@ class Alink {
 	 */
 	public static function process_aimg( &$parser, $frame, $args ) {
 
+		// TODO: More control of img sources should be allowed
+		
 		$attrs = array();
 		
 		foreach ( $args as $arg ) {
