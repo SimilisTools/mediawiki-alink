@@ -11,7 +11,7 @@ call_user_func( function() {
 	$GLOBALS['wgExtensionCredits']['parserhook'][] = array(
 		'path' => __FILE__,
 		'name' => 'Alink',
-		'version' => '0.1',
+		'version' => '0.1.1',
 		'url' => 'https://github.com/SimilisTools/mediawiki-alink',
 		'author' => array( 'Toniher' ),
 		'descriptionmsg' => 'alink-desc',

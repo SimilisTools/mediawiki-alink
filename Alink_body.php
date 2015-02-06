@@ -19,6 +19,11 @@ class Alink {
 		$attrs = array();
 		$text = "";
 		
+		$urlencode = true;
+		if ( array_key_exists ( 'nourlencode', $args ) ) {
+			$urlencode = false;
+		}
+		
 		foreach ( $args as $arg ) {
 			$arg_clean = trim( $frame->expand( $arg ) );
 			$arg_proc = explode( "=", $arg_clean, 2 );
@@ -56,7 +61,12 @@ class Alink {
 				$page = $attrs["href"];
 				$page = str_replace( " ", "_", $page );
 				$attrs["href"] = $wgArticlePath;
-				$attrs["href"] = str_replace( "$1", urlencode( $page ), $attrs["href"] );
+				
+				if ( $urlencode ) {
+					$page = urlencode( $page )
+				}
+				
+				$attrs["href"] = str_replace( "$1", $page, $attrs["href"] );
 			}
 		}
 		
