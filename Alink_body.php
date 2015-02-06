@@ -63,7 +63,7 @@ class Alink {
 				$attrs["href"] = $wgArticlePath;
 				
 				if ( $urlencode ) {
-					$page = urlencode( $page )
+					$page = urlencode( $page );
 				}
 				
 				$attrs["href"] = str_replace( "$1", $page, $attrs["href"] );
