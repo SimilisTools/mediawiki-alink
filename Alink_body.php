@@ -19,11 +19,6 @@ class Alink {
 		$attrs = array();
 		$text = "";
 		
-		$urlencode = true;
-		if ( array_key_exists ( 'nourlencode', $args ) ) {
-			$urlencode = false;
-		}
-		
 		foreach ( $args as $arg ) {
 			$arg_clean = trim( $frame->expand( $arg ) );
 			$arg_proc = explode( "=", $arg_clean, 2 );
@@ -44,6 +39,11 @@ class Alink {
 			}
 		}
 		
+		$urlencode = true;
+		if ( array_key_exists ( 'nourlencode', $attrs ) ) {
+			$urlencode = false;
+		}
+
 		// Code for dealing with internal - external
 		$external = 0;  
 		if ( isset( $attrs["href"] ) ) {
