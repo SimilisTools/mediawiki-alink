@@ -66,7 +66,10 @@ class Alink {
 					$page = urlencode( $page );
 				}
 				
-				$attrs["href"] = str_replace( "$1", $page, $attrs["href"] );
+				#Handling internal page link
+				if ( strpos( $attrs["href"], "#" ) != 0 ) {
+					$attrs["href"] = str_replace( "$1", $page, $attrs["href"] );
+				}
 			}
 		}
 		
