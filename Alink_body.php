@@ -57,17 +57,19 @@ class Alink {
 
 		if ( $external == 0 ) {
 			if ( isset( $attrs["href"] ) ) {
-				global $wgArticlePath;
-				$page = $attrs["href"];
-				$page = str_replace( " ", "_", $page );
-				$attrs["href"] = $wgArticlePath;
 				
-				if ( $urlencode ) {
-					$page = urlencode( $page );
-				}
-				
-				#Handling internal page link
+				#Handling internal links
 				if ( strpos( $attrs["href"], "#" ) != 0 ) {
+					
+					global $wgArticlePath;
+					$page = $attrs["href"];
+					$page = str_replace( " ", "_", $page );
+					$attrs["href"] = $wgArticlePath;
+					
+					if ( $urlencode ) {
+						$page = urlencode( $page );
+					}
+					
 					$attrs["href"] = str_replace( "$1", $page, $attrs["href"] );
 				}
 			}
