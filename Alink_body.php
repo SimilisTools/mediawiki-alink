@@ -59,7 +59,8 @@ class Alink {
 			if ( isset( $attrs["href"] ) ) {
 				
 				#Handling internal links
-				if ( strpos( $attrs["href"], "#" ) != 0 ) {
+				$anchor_detect = strpos( $attrs["href"], "#" );
+				if ( is_int( $anchor_detect ) && $anchor_detect != 0 ) {
 					
 					global $wgArticlePath;
 					$page = $attrs["href"];
