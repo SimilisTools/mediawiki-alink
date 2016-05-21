@@ -19,12 +19,20 @@ class Alink {
 		$attrs = array();
 		$text = "";
 		
+		// Default urlencode
+		$urlencode = true;
+
 		foreach ( $args as $arg ) {
 			$arg_clean = trim( $frame->expand( $arg ) );
 			$arg_proc = explode( "=", $arg_clean, 2 );
 			
 			if ( count( $arg_proc ) == 1 ){
-				$text = trim( $arg_proc[0] );
+				// If arg urlencode -> trigger
+				if ( trim( $arg_proc[0] ) == "nourlencode" ) {
+						$urlencode = false;
+				} else {
+						$text = trim( $arg_proc[0] );
+				}
 			} else {
 			
 				if ( in_array( trim( $arg_proc[0] ), self::$attrs_ref ) ) {
@@ -37,11 +45,6 @@ class Alink {
 					}
 				}
 			}
-		}
-		
-		$urlencode = true;
-		if ( array_key_exists ( 'nourlencode', $attrs ) ) {
-			$urlencode = false;
 		}
 
 		// Code for dealing with internal - external

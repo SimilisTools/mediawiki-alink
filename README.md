@@ -11,3 +11,6 @@ if no http in href, we consider wiki pages. Link text is the parameter without a
 
 {{#alink:href=Example_page|target=_blank|Example page for wiki}}
 
+If we want to avoid urlencoding, we sample add as parameter nourlencode
+
+{{#alink:href=Special:FormEdit/Myform/Mypage?MyTemplate[Myparam]=Acción|nourlencode|Trigger action}}
