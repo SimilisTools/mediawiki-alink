@@ -33,12 +33,10 @@ class Alink {
 				// If arg urlencode -> trigger
 				if ( trim( $arg_proc[0] ) == "nourlencode" ) {
 					$urlencode = false;
+				} elseif ( trim( $arg_proc[0] ) == "noprefix" ) {
+					$noprefix = true;
 				} else {
 					$text = trim( $arg_proc[0] );
-				}
-				
-				if ( trim( $arg_proc[0] ) == "noprefix" ) {
-					$noprefix = true;
 				}
 				
 			} else {
