@@ -21,6 +21,9 @@ class Alink {
 		
 		// Default urlencode
 		$urlencode = true;
+		
+		// Process page
+		$noprefix = false;
 
 		foreach ( $args as $arg ) {
 			$arg_clean = trim( $frame->expand( $arg ) );
@@ -29,10 +32,15 @@ class Alink {
 			if ( count( $arg_proc ) == 1 ){
 				// If arg urlencode -> trigger
 				if ( trim( $arg_proc[0] ) == "nourlencode" ) {
-						$urlencode = false;
+					$urlencode = false;
 				} else {
-						$text = trim( $arg_proc[0] );
+					$text = trim( $arg_proc[0] );
 				}
+				
+				if ( trim( $arg_proc[0] ) == "noprefix" ) {
+					$noprefix = true;
+				}
+				
 			} else {
 			
 				if ( in_array( trim( $arg_proc[0] ), self::$attrs_ref ) ) {
@@ -58,8 +66,13 @@ class Alink {
 			}
 		}
 
-		if ( $external == 0 ) {
-			if ( isset( $attrs["href"] ) ) {
+		// Saving link for modifications
+		$link = null;
+		
+		if ( isset( $attrs["href"] ) ) {
+			$link = $attrs["href"];
+			
+			if ( $external == 0 ) {
 				
 				#Handling internal links
 				$anchor_detect = strpos( $attrs["href"], "#" );
@@ -81,8 +94,18 @@ class Alink {
 		
 		// If no text, use href
 		
-		if ( $text == "" && isset( $attrs["href"] ) ) {
-			$text = $attrs["href"];
+		if ( $text == "" && ! is_null( $link ) ) {
+			$text = $link;
+			
+			// No prefixed title
+			if ( $noprefix ) {
+				
+				$title = Title::newFromText( $link );
+				if ( $title ) {
+					$text = $title->getText();
+				}
+				
+			}
 		}
 
 		$tag = 	Html::element(
