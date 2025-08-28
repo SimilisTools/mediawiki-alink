@@ -1,0 +1,33 @@
+{
+	"name": "Alink",
+	"version": "0.3.0",
+	"author": [
+		"Toni Hermoso Pulido"
+	],
+	"url": "https://github.com/SimilisTools/mediawiki-alink",
+	"descriptionmsg": "alink-desc",
+	"type": "parserhook",
+	"license-name": "GPL-3.0-or-later",
+	"requires": {
+		"MediaWiki": ">=1.35.0"
+	},
+	"AutoloadClasses": {
+		"Alink": "Alink_body.php"
+	},
+	"MessagesDirs": {
+		"Alink": [
+			"i18n"
+		]
+	},
+	"ExtensionMessagesFiles": {
+		"AlinkAlias": "Alink.i18n.php",
+		"AlinkMagic": "Alink.i18n.magic.php"
+	},
+	"Hooks": {
+		"ParserFirstCallInit": [
+			"AlinkHooks::onParserFirstCallInit"
+		]
+	},
+	"manifest_version": 2
+}
+
