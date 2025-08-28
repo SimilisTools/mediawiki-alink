@@ -12,7 +12,8 @@
 		"MediaWiki": ">=1.35.0"
 	},
 	"AutoloadClasses": {
-		"Alink": "Alink_body.php"
+		"Alink": "Alink_body.php",
+    "AformHooks": "includes/Hooks.php"
 	},
 	"MessagesDirs": {
 		"Alink": [
