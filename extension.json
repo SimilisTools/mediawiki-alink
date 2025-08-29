@@ -13,7 +13,7 @@
 	},
 	"AutoloadClasses": {
 		"Alink": "Alink_body.php",
-    "AformHooks": "includes/Hooks.php"
+    "AlinkHooks": "includes/Hooks.php"
 	},
 	"MessagesDirs": {
 		"Alink": [
