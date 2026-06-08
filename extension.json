@@ -21,7 +21,6 @@
 		]
 	},
 	"ExtensionMessagesFiles": {
-		"AlinkAlias": "Alink.i18n.php",
 		"AlinkMagic": "Alink.i18n.magic.php"
 	},
 	"Hooks": {
