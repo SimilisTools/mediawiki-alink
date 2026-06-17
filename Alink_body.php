@@ -14,7 +14,7 @@ class Alink
      * @param $args array
      * @return string
      */
-    public static function process_alink(&$parser, $frame, $args)
+    public static function process_alink($parser, $frame, $args)
     {
 
         $attrs = array();
@@ -122,7 +122,7 @@ class Alink
      * @param $args array
      * @return string
      */
-    public static function process_aimg(&$parser, $frame, $args)
+    public static function process_aimg($parser, $frame, $args)
     {
 
         // TODO: More control of img sources should be allowed
@@ -141,7 +141,7 @@ class Alink
                 }
 
                 foreach (self::$attrs_like as $attr_like) {
-                    if (strpos($arg_proc[0], $attr_like) == 0) {
+                    if (strpos(trim($arg_proc[0]), $attr_like) === 0) {
                         $attrs[ trim($arg_proc[0]) ] = trim($arg_proc[1]);
                     }
                 }
@@ -163,7 +163,7 @@ class Alink
             if (isset($attrs["src"])) {
                 $page = $attrs["src"];
                 $page = str_replace(" ", "_", $page);
-                $file = wfFindFile($page);
+                $file = \MediaWiki\MediaWikiServices::getInstance()->getRepoGroup()->findFile($page);
                 if ($file && $file->exists()) {
                     $attrs["src"] = $file->getUrl();
                 }

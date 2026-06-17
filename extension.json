@@ -1,6 +1,6 @@
 {
 	"name": "Alink",
-	"version": "0.3.0",
+	"version": "0.4.0",
 	"author": [
 		"Toni Hermoso Pulido"
 	],
@@ -9,7 +9,10 @@
 	"type": "parserhook",
 	"license-name": "GPL-3.0-or-later",
 	"requires": {
-		"MediaWiki": ">=1.35.0"
+		"MediaWiki": ">=1.39.0",
+		"platform": {
+			"php": ">=7.4.3"
+		}
 	},
 	"AutoloadClasses": {
 		"Alink": "Alink_body.php",
