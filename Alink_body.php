@@ -107,13 +107,13 @@ class Alink
             }
         }
 
-        $tag = 	Html::element(
+        $tag = Html::element(
             'a',
             $attrs,
             $text
         );
 
-        return $parser->insertStripItem($tag);
+        return [ $tag, 'noparse' => true, 'isHTML' => true ];
     }
 
     /**
@@ -172,12 +172,12 @@ class Alink
         }
 
 
-        $tag = 	Html::element(
+        $tag = Html::element(
             'img',
             $attrs
         );
 
-        return $parser->insertStripItem($tag);
+        return [ $tag, 'noparse' => true, 'isHTML' => true ];
     }
 
 }
