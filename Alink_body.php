@@ -6,7 +6,8 @@ class Alink
     private static $attrs_img_ref = array( "src", "rel", "title", "alt", "class", "id", "content", "itemprop" );
 
     private static $attrs_like = array( "data-" );
-    private static $protocols = array( "https://", "http://", "ftp://" );
+    # If different protocols or it starts with a '/'
+    private static $protocols = array( "https://", "http://", "ftp://", "/" );
 
     /**
      * @param $parser Parser
